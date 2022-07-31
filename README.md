@@ -1,27 +1,11 @@
-# NgTheBasicsApp
+Section 8 - HTTP requests
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Backend(Firebase) setup - done
+- Set up data-storage.service.ts to handle HTTP requests - done
+- Set up HttpClientModule in app.component.ts - done
+- In data-storage.service.ts add a PUT request to store recipes data in Firebase database, and add a click event to "Save Data" - done
+- In data-storage.service.ts add a GET request to fetch recipes data in Firebase database, and add a click event to "Fetch Data" - done
+- Add pipe to the FETCH request to transform data to an empty array if no ingredients are added to the recipe - done
+- Resolve recipes data before loading, by setting up a recipes-resolver.service.ts resolver (A resolver is essentially some code that runs before a route is loaded to ensure that certain data the route depends on is there) - done
+- Add if/else statement to the recipes-resolver.service.ts to first check 
+check whether we do have recipes and only fetch new ones if we don't. With this, we can check if recipes length is equal to zero, then this means we have no recipes and we should fetch them, otherwise if this is not zero, we can just return these recipes because then, we do have recipes so no need to fetch them again - done
