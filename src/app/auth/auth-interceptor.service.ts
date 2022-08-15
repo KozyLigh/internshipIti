@@ -1,0 +1,36 @@
+import { Injectable } from '@angular/core';
+import { HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
+import { exhaustMap, map, take } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../store/app.reducer'
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthInterceptorService implements HttpInterceptor {
+  constructor(
+    private store: Store<fromApp.AppState>
+  ) { }
+
+   // Fetch User token data, use pipe(take(1)) as we only want to fetch it once, and then this pipe will automatically unsubscribe from the subscription
+  // exhaustMap - Map to inner observable, ignore other values until that observable completes.
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    return this.store.select('auth').pipe(
+      take(1),
+      map(authState => {
+        return authState.user;
+      }),
+      exhaustMap(user => {
+        if (!user) {
+          return next.handle(req);
+        }
+        const modifiedReq = req.clone({
+          params: new HttpParams().set('auth', user.token)
+        });
+        return next.handle(modifiedReq);
+      })
+    );  
+  }
+}
