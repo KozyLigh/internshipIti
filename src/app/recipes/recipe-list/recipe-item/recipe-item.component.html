@@ -1,0 +1,23 @@
+<a
+  style="cursor: pointer;"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="mb-3 clearfix">
+    <div class="row mb-1 p-3">
+      <div class="col-5">
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-responsive recipe-list-image">
+      </div>
+      <div class="col-7 recipe-list-item px-2">
+        <h4>
+          {{ recipe.name }}
+        </h4>
+        <p class="m-0">
+          {{ recipe.description }}
+        </p>
+      </div>
+    </div>
+</a>
